@@ -1,2 +1,0 @@
-export const DECAY_FOR_NON_ORGANIC_ITEM = 1
-export const DECAY_FOR_ORGANIC_ITEM = 2

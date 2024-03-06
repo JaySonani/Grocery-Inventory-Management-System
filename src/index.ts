@@ -1,5 +1,5 @@
 import { Item } from "./models/Item";
-import { StoreInventory } from "./StoreInventory";
+import { StoreInventory } from "./models/StoreInventory";
 
 const items = [
   new Item("Apple", 10, 10),

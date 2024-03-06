@@ -1,5 +1,5 @@
 import { beforeEach } from "mocha";
-import { StoreInventory } from "../src/StoreInventory";
+import { StoreInventory } from "../src/models/StoreInventory";
 import { Item } from "../src/models/Item";
 import { expect } from "chai";
 import { OrganicItem } from "../src/models/OrganicItem";
