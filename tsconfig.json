@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "checkJs": false,
+    "skipLibCheck": true,
+    "target": "ES6",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "outDir": "dist",
+    // "module": "ES6",
+    "types": ["mocha", "node"]
+  },
+  "include": ["src/**/*.ts", "test/**/*.ts"]
+}
