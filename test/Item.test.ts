@@ -22,7 +22,7 @@ describe("System", () => {
     testItems = [
         // name, sellIn, quality
       new Item("Apple", 10, 10),
-      new OrganicItem("Banana", 7, 9),
+      new Item("Banana", 7, 9),
       new Item("Strawberry", 5, 10),
       new Item("Cheddar Cheese", 10, 16),
       new Item("Instant Ramen", 0, 5),
@@ -89,15 +89,30 @@ describe("System", () => {
 
   it("should remove the item if 5 days passed since sellIn date", ()=>{
     const testItem = testItems[1];
-
     while(testItem.sellIn != -5){
         testStoreInventory.updateQuality();
     }
-
     testStoreInventory.updateQuality();
-
     expect(testItems.find((item) => item.name === "Banana")).to.be.undefined;
+  })
 
+  it("should not update quality of Instant Ramen", () => {
+    const testItem = testItems[4];
+    const previousQuality = testItem.quality
+
+    testStoreInventory.updateQuality()
+
+    expect(testItem.quality).to.be.equal(previousQuality);
+
+  })
+
+  it("should not update sellIn of Instant Ramen", () => {
+    const testItem = testItems[4];
+    const previousSellIn = testItem.sellIn
+
+    testStoreInventory.updateQuality()
+
+    expect(testItem.sellIn).to.be.equal(previousSellIn);
 
   })
 
