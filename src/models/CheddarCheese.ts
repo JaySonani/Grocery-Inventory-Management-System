@@ -1,8 +1,8 @@
 import { Item } from "./Item";
 
-export class OrganicItem extends Item {
+export class CheddarCheese extends Item {
   constructor(name: string, sellIn: number, quality: number) {
     super(name, sellIn, quality);
-    this.qualityDecrementRate =  this.qualityDecrementRate * 2;
+    this.qualityDecrementRate = -1;
   }
 }

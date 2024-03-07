@@ -1,17 +1,22 @@
 import { Item } from "./models/Item";
+import { OrganicItem } from "./models/OrganicItem";
+import { InstantRamen } from "./models/InstantRamen";
+import { CheddarCheese } from "./models/CheddarCheese";
 import { StoreInventory } from "./models/StoreInventory";
+import { NUMBER_OF_DAYS } from "./constants";
 
 const items = [
   new Item("Apple", 10, 10),
   new Item("Banana", 7, 9),
   new Item("Strawberry", 5, 10),
-  new Item("Cheddar Cheese", 10, 16),
-  new Item("Instant Ramen", 0, 5),
-  new Item("Organic Avocado", 5, 16),
+  new CheddarCheese("Cheddar Cheese", 10, 16),
+  new InstantRamen("Instant Ramen", 0, 5),
+  new OrganicItem("Organic Avocado", 5, 17),
 ];
 
 const storeInventory = new StoreInventory(items);
-const days = 4;
+
+const days = NUMBER_OF_DAYS;
 
 for (let i = 0; i < days; i++) {
     console.log("Day " + i + "  ---------------------------------");
@@ -23,5 +28,6 @@ for (let i = 0; i < days; i++) {
     console.table(data)
 
     console.log();
-    storeInventory.updateQuality();
+    items.forEach((item) => item.updateItemQuality());
+    storeInventory.updateSellIn();
 }
