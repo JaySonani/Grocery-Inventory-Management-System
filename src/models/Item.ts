@@ -7,12 +7,18 @@ export class Item {
   qualityDecrementRate: number;
   sellInDecrementRate: number;
 
-  constructor(name: string, sellIn: number, quality: number) {
+  constructor(
+    name: string,
+    sellIn: number,
+    quality: number,
+    qualityDecrementRate?: number,
+    sellInDecrementRate?: number
+  ) {
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;
-    this.qualityDecrementRate = 1;
-    this.sellInDecrementRate = 1;
+    this.qualityDecrementRate = qualityDecrementRate ?? 1;
+    this.sellInDecrementRate = sellInDecrementRate ?? 1;
   }
 
   updateItemQuality() {

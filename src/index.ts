@@ -1,7 +1,5 @@
 import { Item } from "./models/Item";
 import { OrganicItem } from "./models/OrganicItem";
-import { InstantRamen } from "./models/InstantRamen";
-import { CheddarCheese } from "./models/CheddarCheese";
 import { StoreInventory } from "./models/StoreInventory";
 import { NUMBER_OF_DAYS } from "./constants";
 
@@ -9,8 +7,8 @@ const items = [
   new Item("Apple", 10, 10),
   new Item("Banana", 7, 9),
   new Item("Strawberry", 5, 10),
-  new CheddarCheese("Cheddar Cheese", 10, 16),
-  new InstantRamen("Instant Ramen", 0, 5),
+  new Item("Cheddar Cheese", 10, 16, -1),
+  new Item("Instant Ramen", 0, 5, 0, 0),
   new OrganicItem("Organic Avocado", 5, 17),
 ];
 

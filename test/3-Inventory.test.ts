@@ -3,7 +3,8 @@ import { beforeEach } from "mocha";
 
 import { Item } from "../src/models/Item";
 import { StoreInventory } from "../src/models/StoreInventory";
-import { InstantRamen } from "../src/models/InstantRamen";
+import { OrganicItem } from "../src/models/OrganicItem";
+import { NUMBER_OF_DAYS } from "../src/constants";
 
 describe("Inventory system", () => {
   let testStoreInventory: StoreInventory;
@@ -14,22 +15,33 @@ describe("Inventory system", () => {
       new Item("Apple", 10, 10),
       new Item("Banana", 7, 9),
       new Item("Strawberry", 5, 10),
-      new Item("Cheddar Cheese", 10, 16),
-      new Item("Instant Ramen", 0, 5),
-      new Item("Organic Avocado", 5, 16),
+      new Item("Cheddar Cheese", 10, 16, -1),
+      new Item("Instant Ramen", 0, 5, 0, 0),
+      new OrganicItem("Organic Avocado", 5, 16),
     ];
     testStoreInventory = new StoreInventory(testItems);
   });
 
   it("should decrement sellIn for each item", () => {
-    const intitalSellInValues = testItems.map((item) => item.sellIn);
-    testStoreInventory.updateSellIn();
-    const newSellInValues = testItems.map((item) => item.sellIn);
+    for (let i = 0; i <= NUMBER_OF_DAYS; i++) {
+      const initialItems = testStoreInventory.items.map((x) =>
+        Object.assign({}, x)
+      ); // making deep copy of initial values
+      
+      testStoreInventory.updateSellIn();
 
-    intitalSellInValues.forEach((initialSellInValue, index) => {
-      expect(newSellInValues[index]).to.be.equal(initialSellInValue - 1);
-    });
-    
+      testStoreInventory.items.forEach((newItem) => {
+        const oldItem = initialItems.find((item) => item.name === newItem.name);
+
+        if (oldItem) {
+          if (newItem.name === "Instant Ramen") {
+            expect(newItem.sellIn).to.be.equal(oldItem.sellIn);
+          } else {
+            expect(newItem.sellIn).to.be.equal(oldItem.sellIn - 1);
+          }
+        }
+      });
+    }
   });
 
   it("should remove the item if 5 days passed since sellIn date", () => {
