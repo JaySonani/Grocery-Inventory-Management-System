@@ -28,9 +28,9 @@ export class Item {
 
   private checkQualityRange() {
     if (this.quality < MINIMUM_ITEM_QUALITY) {
-      this.quality = 0;
+      this.quality = MINIMUM_ITEM_QUALITY;
     } else if (this.quality > MAXIMUM_ITEM_QUALITY) {
-      this.quality = 25;
+      this.quality = MAXIMUM_ITEM_QUALITY;
     }
   }
 
