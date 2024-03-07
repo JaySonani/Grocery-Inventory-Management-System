@@ -1,24 +1,24 @@
 import { MAXIMUM_ITEM_QUALITY, MINIMUM_ITEM_QUALITY } from "../constants";
 
-export class Item {
+export abstract class Item {
   name: string;
   sellIn: number;
   quality: number;
-  qualityDecrementRate: number;
   sellInDecrementRate: number;
+  qualityDecrementRate: number;
 
-  constructor(
+  protected constructor(
     name: string,
     sellIn: number,
     quality: number,
+    sellInDecrementRate?: number,
     qualityDecrementRate?: number,
-    sellInDecrementRate?: number
   ) {
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;
-    this.qualityDecrementRate = qualityDecrementRate ?? 1;
     this.sellInDecrementRate = sellInDecrementRate ?? 1;
+    this.qualityDecrementRate = qualityDecrementRate ?? 1;
   }
 
   updateItemQuality() {
@@ -35,9 +35,10 @@ export class Item {
   }
 
   private updateQuality() {
-    if (this.sellIn <= 0) {
-      this.quality -= this.qualityDecrementRate;
+    if (this.sellIn === 0) {
+      this.qualityDecrementRate *= 2;
     }
     this.quality -= this.qualityDecrementRate;
   }
+
 }

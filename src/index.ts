@@ -1,14 +1,15 @@
-import { Item } from "./models/Item";
-import { OrganicItem } from "./models/OrganicItem";
+import { OrganicItem } from "./models/items/OrganicItem";
 import { StoreInventory } from "./models/StoreInventory";
 import { NUMBER_OF_DAYS } from "./constants";
+import { RegularItem } from "./models/items/RegularItem";
+import { ExceptionalItem } from "./models/items/ExceptionalItem";
 
 const items = [
-  new Item("Apple", 10, 10),
-  new Item("Banana", 7, 9),
-  new Item("Strawberry", 5, 10),
-  new Item("Cheddar Cheese", 10, 16, -1),
-  new Item("Instant Ramen", 0, 5, 0, 0),
+  new RegularItem("Apple", 10, 10),
+  new RegularItem("Banana", 7, 9),
+  new RegularItem("Strawberry", 5, 10),
+  new ExceptionalItem("Cheddar Cheese", 10, 16, 1, -1),
+  new ExceptionalItem("Instant Ramen", 0, 5, 0, 0),
   new OrganicItem("Organic Avocado", 5, 17),
 ];
 

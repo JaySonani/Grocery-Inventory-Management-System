@@ -2,9 +2,12 @@ import { expect } from "chai";
 import { beforeEach } from "mocha";
 
 import { Item } from "../src/models/Item";
+import { OrganicItem } from "../src/models/items/OrganicItem";
+import { RegularItem } from "../src/models/items/RegularItem";
+import { ExceptionalItem } from "../src/models/items/ExceptionalItem";
 import { StoreInventory } from "../src/models/StoreInventory";
-import { OrganicItem } from "../src/models/OrganicItem";
-import { MINIMUM_ITEM_SELLIN, NUMBER_OF_DAYS } from "../src/constants";
+
+import { NUMBER_OF_DAYS } from "../src/constants";
 
 describe("Inventory system", () => {
   let testStoreInventory: StoreInventory;
@@ -12,11 +15,13 @@ describe("Inventory system", () => {
 
   beforeEach(() => {
     testItems = [
-      new Item("Apple", 10, 10),
-      new Item("Banana", 7, 9),
-      new Item("Strawberry", 5, 10),
-      new Item("Cheddar Cheese", 11, 16, -1),
-      new Item("Instant Ramen", 0, 5, 0, 0),
+      new RegularItem("Apple", 10, 10),
+      new RegularItem("Banana", 7, 9),
+      new RegularItem("Strawberry", 5, 10),
+
+      new ExceptionalItem("Cheddar Cheese", 11, 16, 1, -1),
+      new ExceptionalItem("Instant Ramen", 0, 5, 0, 0),
+      
       new OrganicItem("Organic Avocado", 5, 16),
     ];
     testStoreInventory = new StoreInventory(testItems);
