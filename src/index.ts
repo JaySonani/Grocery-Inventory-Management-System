@@ -1,4 +1,4 @@
-import { System } from "./models/System";
+import { System } from "./System";
 
 function main() {
   const system = new System();

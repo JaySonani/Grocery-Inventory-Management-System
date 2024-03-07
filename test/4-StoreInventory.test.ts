@@ -29,9 +29,9 @@ describe("Inventory system", () => {
 
   it("should decrement sellIn for each item", () => {
     for (let i = 0; i <= NUMBER_OF_DAYS; i++) {
-      const initialItems = testStoreInventory.items.map((x) =>
-        Object.assign({}, x)
-      ); // making deep copy of initial values
+      
+      // making deep copy of initial values
+      const initialItems = testStoreInventory.items.map((item) => ({ ...item})); 
 
       testStoreInventory.updateSellIn();
 

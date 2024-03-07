@@ -1,10 +1,10 @@
-import { Item } from "./Item";
-import { RegularItem } from "./items/RegularItem";
-import { OrganicItem } from "./items/OrganicItem";
-import { ExceptionalItem } from "./items/ExceptionalItem";
-import { StoreInventory } from "./StoreInventory";
+import { Item } from "./models/Item";
+import { RegularItem } from "./models/items/RegularItem";
+import { OrganicItem } from "./models/items/OrganicItem";
+import { ExceptionalItem } from "./models/items/ExceptionalItem";
+import { StoreInventory } from "./models/StoreInventory";
 
-import { NUMBER_OF_DAYS } from "../constants";
+import { NUMBER_OF_DAYS } from "./constants";
 
 export class System {
   items: Array<Item>;
