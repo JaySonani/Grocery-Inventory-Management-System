@@ -21,7 +21,7 @@ describe("Inventory system", () => {
 
       new ExceptionalItem("Cheddar Cheese", 11, 16, 1, -1),
       new ExceptionalItem("Instant Ramen", 0, 5, 0, 0),
-      
+
       new OrganicItem("Organic Avocado", 5, 16),
     ];
     testStoreInventory = new StoreInventory(testItems);
@@ -46,13 +46,31 @@ describe("Inventory system", () => {
     }
   });
 
-  it("should remove the item if 5 days passed since sellIn date", () => {
-    const testItem = testItems[0];
-    while (testItem.sellIn != -5) {
+  it("should remove the Regular item if 5 days passed since sellIn date", () => {
+    const regularItem = testItems[0];
+    while (regularItem.sellIn != -5) {
       testStoreInventory.updateSellIn();
     }
     testStoreInventory.updateSellIn();
-    expect(testItems.find((item) => item === testItem)).to.be.undefined;
+    expect(testItems.find((item) => item.name === regularItem.name)).to.be
+      .undefined;
   });
 
+  it("should remove the Organic item if 5 days passed since sellIn date", () => {
+    const organicItem = testItems[5];
+    while (organicItem.sellIn != -5) {
+      testStoreInventory.updateSellIn();
+    }
+    testStoreInventory.updateSellIn();
+    expect(testItems.find((item) => item.name === organicItem.name)).to.be
+      .undefined;
+  });
+
+  it("should not remove the Exceptional item: Instant Ramen ever", () => {
+    const instantRamen = testItems[4];
+
+    testStoreInventory.updateSellIn();
+    expect(testItems.find((item) => item.name === instantRamen.name)).to.not.be
+      .undefined;
+  });
 });

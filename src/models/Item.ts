@@ -7,12 +7,12 @@ export abstract class Item {
   sellInDecrementRate: number;
   qualityDecrementRate: number;
 
-  protected constructor(
+  constructor(
     name: string,
     sellIn: number,
     quality: number,
     sellInDecrementRate?: number,
-    qualityDecrementRate?: number,
+    qualityDecrementRate?: number
   ) {
     this.name = name;
     this.sellIn = sellIn;
@@ -40,5 +40,4 @@ export abstract class Item {
     }
     this.quality -= this.qualityDecrementRate;
   }
-
 }

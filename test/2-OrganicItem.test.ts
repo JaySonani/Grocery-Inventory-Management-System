@@ -21,8 +21,11 @@ describe("Organic Item", () => {
     for (let i = 2; i <= NUMBER_OF_DAYS; i += 2) {
       organicItem.updateItemQuality();
       testInventory.updateSellIn();
-      if(organicItem.sellIn > 0){
-        expect(organicItem.quality).to.be.oneOf([initialQuality - i, MINIMUM_ITEM_QUALITY]);
+      if (organicItem.sellIn > 0) {
+        expect(organicItem.quality).to.be.oneOf([
+          initialQuality - i,
+          MINIMUM_ITEM_QUALITY,
+        ]);
       }
     }
   });
@@ -32,10 +35,14 @@ describe("Organic Item", () => {
       testInventory.updateSellIn();
     }
 
+    // quality will decrement at rate, 4, 8, 12,..
     for (let i = 4; i <= NUMBER_OF_DAYS * 2; i += 4) {
       organicItem.updateItemQuality();
       testInventory.updateSellIn();
-      expect(organicItem.quality).to.be.oneOf([initialQuality - i, MINIMUM_ITEM_QUALITY]);
+      expect(organicItem.quality).to.be.oneOf([
+        initialQuality - i,
+        MINIMUM_ITEM_QUALITY,
+      ]);
     }
   });
 });

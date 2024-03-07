@@ -9,9 +9,9 @@ export class StoreInventory {
   }
 
   updateSellIn() {
-    for (let i = this.items.length-1; i>=0; i--) {
+    for (let i = this.items.length - 1; i >= 0; i--) {
       if (this.items[i].sellIn == MINIMUM_ITEM_SELLIN) {
-        this.items.splice(i, 1);
+        this.items.splice(i, 1); // removing the current item from inventory
       } else {
         this.items[i].sellIn -= this.items[i].sellInDecrementRate;
       }

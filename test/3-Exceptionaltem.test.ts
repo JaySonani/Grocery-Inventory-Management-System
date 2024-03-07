@@ -27,8 +27,8 @@ describe("Exceptional Item", () => {
     storeInventory = new StoreInventory([instantRamen, cheddarCheese]);
   });
 
-  it("cheddar cheese: should increment quality daily ", () => {
-    for (let i = 1; i <= 5; i++) {
+  it("cheddar cheese: should increment quality daily", () => {
+    for (let i = 1; i <= NUMBER_OF_DAYS; i++) {
       cheddarCheese.updateItemQuality();
       storeInventory.updateSellIn();
       expect(cheddarCheese.quality).to.be.oneOf([
@@ -36,6 +36,14 @@ describe("Exceptional Item", () => {
         MAXIMUM_ITEM_QUALITY,
       ]);
     }
+  });
+
+  it("cheddar cheese: quality should not go over 25", () => {
+    while (cheddarCheese.quality != 25) {
+      cheddarCheese.updateItemQuality();
+    }
+    cheddarCheese.updateItemQuality();
+    expect(cheddarCheese.quality).to.be.equal(25);
   });
 
   it("instant ramen: should not update quality over the days", () => {

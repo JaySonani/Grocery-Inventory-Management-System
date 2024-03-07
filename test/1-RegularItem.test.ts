@@ -4,11 +4,7 @@ import { beforeEach } from "mocha";
 import { RegularItem } from "../src/models/items/RegularItem";
 import { StoreInventory } from "../src/models/StoreInventory";
 
-import {
-  MAXIMUM_ITEM_QUALITY,
-  MINIMUM_ITEM_QUALITY,
-  NUMBER_OF_DAYS,
-} from "../src/constants";
+import { MINIMUM_ITEM_QUALITY, NUMBER_OF_DAYS } from "../src/constants";
 
 describe("Regular Item", () => {
   let regularItem: RegularItem;
@@ -33,12 +29,12 @@ describe("Regular Item", () => {
     }
   });
 
-  it("should have non negative quality", () => {
-    expect(regularItem.quality).to.greaterThanOrEqual(-1);
-  });
-
-  it("should have quality no more than 25", () => {
-    expect(regularItem.quality).to.lessThanOrEqual(MAXIMUM_ITEM_QUALITY);
+  it("should not decrement quality below 0", () => {
+    while (regularItem.quality != 0) {
+      regularItem.updateItemQuality();
+    }
+    regularItem.updateItemQuality();
+    expect(regularItem.quality).to.be.equal(0);
   });
 
   it("should decrement in quality 2x fast if sellin date has passed", () => {
