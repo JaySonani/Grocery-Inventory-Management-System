@@ -1,8 +1,9 @@
 import { expect } from "chai";
 import { beforeEach } from "mocha";
 
-import { OrganicItem } from "../src/models/OrganicItem";
+import { OrganicItem } from "../src/models/items/OrganicItem";
 import { StoreInventory } from "../src/models/StoreInventory";
+
 import { MINIMUM_ITEM_QUALITY, NUMBER_OF_DAYS } from "../src/constants";
 
 describe("Organic Item", () => {
@@ -20,8 +21,11 @@ describe("Organic Item", () => {
     for (let i = 2; i <= NUMBER_OF_DAYS; i += 2) {
       organicItem.updateItemQuality();
       testInventory.updateSellIn();
-      if(organicItem.sellIn > 0){
-        expect(organicItem.quality).to.be.oneOf([initialQuality - i, MINIMUM_ITEM_QUALITY]);
+      if (organicItem.sellIn > 0) {
+        expect(organicItem.quality).to.be.oneOf([
+          initialQuality - i,
+          MINIMUM_ITEM_QUALITY,
+        ]);
       }
     }
   });
@@ -31,11 +35,14 @@ describe("Organic Item", () => {
       testInventory.updateSellIn();
     }
 
+    // quality will decrement at rate, 4, 8, 12,..
     for (let i = 4; i <= NUMBER_OF_DAYS * 2; i += 4) {
       organicItem.updateItemQuality();
       testInventory.updateSellIn();
-
-      expect(organicItem.quality).to.be.oneOf([initialQuality - i, MINIMUM_ITEM_QUALITY]);
+      expect(organicItem.quality).to.be.oneOf([
+        initialQuality - i,
+        MINIMUM_ITEM_QUALITY,
+      ]);
     }
   });
 });
